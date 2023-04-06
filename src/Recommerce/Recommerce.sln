@@ -1,6 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommerce", "Recommerce.csproj", "{0D294183-3121-4DA3-89EF-4EA572F984EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommerce", "Recommerce\Recommerce.csproj", "{1E50F477-E8CC-4F44-8B48-A81DF722BBFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommerce.Data", "Recommerce.Data\Recommerce.Data.csproj", "{5893A13A-92A4-4AC1-B510-326769909B3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommerce.Infrastructure", "Recommerce.Infrastructure\Recommerce.Infrastructure.csproj", "{65805D81-7674-409F-8CCF-FFA00FFBD2F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommerce.Services", "Recommerce.Services\Recommerce.Services.csproj", "{A6402BB9-5EFE-4B7A-A543-851B7581D241}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommerce.Identity", "Recommerce.Identity\Recommerce.Identity.csproj", "{DF3EDC85-A679-4E23-950D-D9FCD46EF198}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -8,9 +16,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0D294183-3121-4DA3-89EF-4EA572F984EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D294183-3121-4DA3-89EF-4EA572F984EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D294183-3121-4DA3-89EF-4EA572F984EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D294183-3121-4DA3-89EF-4EA572F984EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E50F477-E8CC-4F44-8B48-A81DF722BBFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E50F477-E8CC-4F44-8B48-A81DF722BBFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E50F477-E8CC-4F44-8B48-A81DF722BBFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E50F477-E8CC-4F44-8B48-A81DF722BBFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5893A13A-92A4-4AC1-B510-326769909B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5893A13A-92A4-4AC1-B510-326769909B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5893A13A-92A4-4AC1-B510-326769909B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5893A13A-92A4-4AC1-B510-326769909B3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65805D81-7674-409F-8CCF-FFA00FFBD2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65805D81-7674-409F-8CCF-FFA00FFBD2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65805D81-7674-409F-8CCF-FFA00FFBD2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65805D81-7674-409F-8CCF-FFA00FFBD2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6402BB9-5EFE-4B7A-A543-851B7581D241}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6402BB9-5EFE-4B7A-A543-851B7581D241}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6402BB9-5EFE-4B7A-A543-851B7581D241}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6402BB9-5EFE-4B7A-A543-851B7581D241}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF3EDC85-A679-4E23-950D-D9FCD46EF198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF3EDC85-A679-4E23-950D-D9FCD46EF198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF3EDC85-A679-4E23-950D-D9FCD46EF198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF3EDC85-A679-4E23-950D-D9FCD46EF198}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

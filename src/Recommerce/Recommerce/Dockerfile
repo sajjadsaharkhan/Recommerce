@@ -5,10 +5,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["Recommerce.csproj", "./"]
-RUN dotnet restore "Recommerce.csproj"
+COPY ["Recommerce/Recommerce.csproj", "Recommerce/"]
+RUN dotnet restore "Recommerce/Recommerce.csproj"
 COPY . .
-WORKDIR "/src/"
+WORKDIR "/src/Recommerce"
 RUN dotnet build "Recommerce.csproj" -c Release -o /app/build
 
 FROM build AS publish

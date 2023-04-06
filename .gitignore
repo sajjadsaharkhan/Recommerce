@@ -253,6 +253,9 @@ paket-files/
 .idea/
 *.sln.iml
 
+# Fleet
+./fleet
+
 # CodeRush
 .cr/
 

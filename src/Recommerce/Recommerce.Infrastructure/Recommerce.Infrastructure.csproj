@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
+                
+        <PackageReference Include="PluralizeService.Core" Version="2.1.1" />
+        <PackageReference Include="Scrutor.AspNetCore" Version="3.3.0" />
+        <PackageReference Include="Mapster" Version="7.3.0" />
+
+        <!--    Redis Cache    -->
+        <PackageReference Include="EasyCaching.Redis" Version="1.7.0" />
+        <PackageReference Include="EasyCaching.InMemory" Version="1.7.0" />
+        <PackageReference Include="EasyCaching.Serialization.MessagePack" Version="1.7.0" />
+
+        <!--    Serilog and Sentry    -->
+        <PackageReference Include="Sentry.Serilog" Version="3.24.0" />
+        <PackageReference Include="Sentry.AspNetCore" Version="3.24.0" />
+        <PackageReference Include="Serilog.Sinks.Sentry" Version="2.4.3" />
+        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+        <PackageReference Include="Serilog.Enrichers.AspNetCore.HttpContext" Version="1.0.1" />
+        <PackageReference Include="Serilog.Enrichers.AssemblyName" Version="1.0.9" />
+        <PackageReference Include="Serilog.Enrichers.Environment" Version="2.2.0" />
+        <PackageReference Include="Serilog.Enrichers.Process" Version="2.0.2" />
+        <PackageReference Include="Serilog.Enrichers.Thread" Version="3.1.0" />
+        <PackageReference Include="Serilog.Enrichers.TraceIdentifier" Version="1.0.2" />
+        <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="8.4.1" />
+    </ItemGroup>
+</Project>
