@@ -8,8 +8,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommerce.Infrastructure",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommerce.Services", "Recommerce.Services\Recommerce.Services.csproj", "{A6402BB9-5EFE-4B7A-A543-851B7581D241}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recommerce.Identity", "Recommerce.Identity\Recommerce.Identity.csproj", "{DF3EDC85-A679-4E23-950D-D9FCD46EF198}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +30,5 @@ Global
 		{A6402BB9-5EFE-4B7A-A543-851B7581D241}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6402BB9-5EFE-4B7A-A543-851B7581D241}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6402BB9-5EFE-4B7A-A543-851B7581D241}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF3EDC85-A679-4E23-950D-D9FCD46EF198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF3EDC85-A679-4E23-950D-D9FCD46EF198}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF3EDC85-A679-4E23-950D-D9FCD46EF198}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF3EDC85-A679-4E23-950D-D9FCD46EF198}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
