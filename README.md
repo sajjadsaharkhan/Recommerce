@@ -1,7 +1,7 @@
 <div align="center" style="margin-bottom:20px">
   <img src="https://raw.githubusercontent.com/sajjadsaharkhan/Recommerce/main/assets/recommerce-logo.png" alt="recommerce logo" />
     <div align="center">
-                <a href="https://github.com/meysamhadeli/booking-modular-monolith/blob/main/LICENSE"><img alt="build-status"          src="https://img.shields.io/github/license/meysamhadeli/booking-modular-monolith?color=%234275f5&style=flat-square"/></a>
+                <a href="https://github.com/sajjadsaharkhan/Recommerce/blob/main/README.md"><img alt="build-status" src="https://img.shields.io/github/license/meysamhadeli/booking-modular-monolith?color=%234275f5&style=flat-square"/></a>
     </div>   
 </div>
 
