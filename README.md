@@ -131,7 +131,7 @@ High-level plan is represented in the table
 - ✔️ **[`Masstransit`](https://github.com/MassTransit/MassTransit)** - MassTransit is free software/open-source .NET-based Enterprise Service Bus.
 - ✔️ **[`GitHub Actions`](https://github.com/features/actions)** - GitHub Actions makes automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub
 
-## The Domain And Bounded Context - Service Boundary
+## The Domain And Bounded Context
 
 - `Presentation`: The Booking Service is a bounded context for managing all operation related to booking ticket.
  - `Services`: The Services project is a bounded context of system business logics
