@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  recommerce-db:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: recommerce-db
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "R@@t1234"
+    volumes:
+      - /home/recommerce/volumes/mssql/data/production:/var/opt/mssql/data
+    ports:
+      - "1432:1433"
+    networks:
+      - recommerce_network
+  recommerce:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - sql-db
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - recommerce_network
+
+networks:
+  recommerce_network:
+    driver: bridge
