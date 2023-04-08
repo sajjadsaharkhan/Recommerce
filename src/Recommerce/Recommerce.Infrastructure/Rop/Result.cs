@@ -42,6 +42,10 @@ public class Result
     {
         return new Result(false,  null!, messages);
     }
+    
+    // wrap Custom Exceptions into Result
+    public static implicit operator Result(BaseException exception) =>
+        new(false,exception);
 }
 
 [PublicAPI]

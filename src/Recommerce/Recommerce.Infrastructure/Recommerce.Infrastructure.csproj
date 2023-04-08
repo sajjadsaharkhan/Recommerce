@@ -7,8 +7,10 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="FluentValidation" Version="11.5.2" />
         <PackageReference Include="JetBrains.Annotations" Version="2022.3.1" />
-                
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
+
         <PackageReference Include="PluralizeService.Core" Version="2.1.1" />
         <PackageReference Include="Scrutor.AspNetCore" Version="3.3.0" />
         <PackageReference Include="Mapster" Version="7.3.0" />

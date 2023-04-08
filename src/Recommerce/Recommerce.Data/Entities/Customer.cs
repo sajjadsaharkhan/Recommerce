@@ -7,10 +7,10 @@ namespace Recommerce.Data.Entities;
 public class Customer : IEntityMarker
 {
     public int Id { get; set; }
-    public Guid UniqueIdentifier { get; set; }
-    public DateTime BirthDate { get; set; }
-    public GenderType GenderType { get; set; }
-    public int ShoppingBalance { get; set; }
+    public string UniqueIdentifier { get; set; }
+    public DateTime? BirthDate { get; set; }
+    public GenderType? GenderType { get; set; }
+    public int? ShoppingBalance { get; set; }
     public DateTime RegisterDate { get; set; }
     public DateTime LastLoginDate { get; set; }
     public DateTime CreationDate { get; set; }
@@ -57,7 +57,6 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
             .HasColumnType("int");
         
         entity.Property(x => x.GenderType)
-            .IsRequired()
             .HasColumnType("TinyInt");
     }
 }
