@@ -90,4 +90,19 @@ public class ProductService : IProductService
 
         return paginatedProductList;
     }
+
+    public async Task<Result<Dictionary<string, int>>> GetProductIdAsync(IEnumerable<string> productIdentifierList,
+        CancellationToken cancellationToken)
+    {
+        var productsIdDictionary = await _dbContext.Products
+            .AsNoTracking()
+            .Where(p => productIdentifierList.Contains(p.UniqueIdentifier))
+            .ToDictionaryAsync(keySelector => keySelector.UniqueIdentifier, valueSelector => valueSelector.Id,
+                cancellationToken);
+
+        if (productsIdDictionary.Count == productIdentifierList.Count())
+            return new EntityNotFoundException<Product>();
+
+        return productsIdDictionary;
+    }
 }

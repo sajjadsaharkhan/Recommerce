@@ -20,4 +20,6 @@ public interface ICustomerService : IScopedLifetime
     public Task<Result> DeleteAsync(string uniqueIdentifier, CancellationToken cancellationToken);
 
     public Task<Result> LoginAsync(string uniqueIdentifier, CancellationToken cancellationToken);
+
+    public Task<Result<int>> GetCustomerIdAsync(string uniqueIdentifier, CancellationToken cancellationToken);
 }

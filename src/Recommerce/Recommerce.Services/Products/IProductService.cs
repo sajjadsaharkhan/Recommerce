@@ -18,4 +18,7 @@ public interface IProductService : IScopedLifetime
 
     public Task<Result<PaginationResponseDto<ProductOutDto>>> GetListAsync(PaginationRequestDto paginationRequestDto,
         CancellationToken cancellationToken);
+
+    public Task<Result<Dictionary<string,int>>> GetProductIdAsync(IEnumerable<string> productIdentifierList,
+        CancellationToken cancellationToken);
 }

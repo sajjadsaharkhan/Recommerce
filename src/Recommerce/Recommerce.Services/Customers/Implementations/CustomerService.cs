@@ -108,4 +108,16 @@ public class CustomerService : ICustomerService
 
         return Result.Success();
     }
+
+    public async Task<Result<int>> GetCustomerIdAsync(string uniqueIdentifier, CancellationToken cancellationToken)
+    {
+        var customerId = await _dbContext.Customers
+            .Where(c => c.UniqueIdentifier == uniqueIdentifier)
+            .Select(c=>c.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+        if (customerId == default)
+            return new EntityNotFoundException<Customer>(uniqueIdentifier);
+        
+        return customerId;
+    }
 }
