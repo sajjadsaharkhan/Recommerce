@@ -70,10 +70,10 @@ public static class Apriori
         return frequentItemSets;
     }
 
-    public static IList<AssociationRule> GenerateAssociationRules(List<ItemSetDto> frequentItemSets,
+    public static IList<AssociationRuleDto> GenerateAssociationRules(List<ItemSetDto> frequentItemSets,
         double minConfidence)
     {
-        var rules = new List<AssociationRule>();
+        var rules = new List<AssociationRuleDto>();
 
         foreach (var itemSet in frequentItemSets)
         {
@@ -90,7 +90,7 @@ public static class Apriori
 
                 if (!(confidence >= minConfidence))
                     continue;
-                var rule = new AssociationRule(antecedent, consequent, confidence);
+                var rule = new AssociationRuleDto(antecedent, consequent, confidence);
                 rules.Add(rule);
             }
         }
