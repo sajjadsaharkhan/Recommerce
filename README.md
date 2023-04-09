@@ -108,10 +108,10 @@ High-level plan is represented in the table
 
 | Feature           | Status         |
 | ----------------- | -------------- |
-| Entities and Db       | Pending ⏳   |
-| Data Insert and Update mechanism | ToDo 🚧|
+| Entities and Db       | Done ✔️   |
+| Data Insert and Update mechanism | Done ✔️|
 | AI Analytics    | ToDo 🚧   |
-| Recommendation System Services   | ToDo 🚧   |
+| Recommendation System Services   | Done ✔️   |
 
 ## Technologies - Libraries
 
