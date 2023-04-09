@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore;
 using Recommerce.Data.DbContexts;
 using Recommerce.Data.Entities;
 using Recommerce.Infrastructure.Rop;
@@ -41,6 +42,7 @@ public class OrderService : IOrderService
         var orderEntityList = createOrderInDto.OrderItems
             .Select(oi => new Order
             {
+                OrderUniqueIdentifier = createOrderInDto.OrderUniqueIdentifier,
                 CustomerId = customerIdResult.Data,
                 CustomerLocationId = createOrderInDto.CustomerLocationId,
                 CustomerSessionId = createOrderInDto.CustomerSessionId,
@@ -49,9 +51,29 @@ public class OrderService : IOrderService
                 UniquePrice = oi.UniquePrice
             });
 
-        await _dbContext.Orders.AddRangeAsync(orderEntityList,cancellationToken);
+        await _dbContext.Orders.AddRangeAsync(orderEntityList, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
 
         return Result.Success();
+    }
+
+    public async Task<Result<Dictionary<string, List<string>>>> GetOrderedProductIdentifierAsync(int customerId,
+        bool preventDuplication, CancellationToken cancellationToken)
+    {
+        var productIdList = await (from order in _dbContext.Orders
+            join product in _dbContext.Products
+                on order.ProductId equals product.Id
+            where !preventDuplication || order.CustomerId == customerId
+            select new
+            {
+                ProductUniqueIdentifier = product.UniqueIdentifier,
+                order.OrderUniqueIdentifier
+            }).ToListAsync(cancellationToken);
+
+        var productGrouping = productIdList.GroupBy(x => x.OrderUniqueIdentifier)
+            .ToDictionary(keySelector => keySelector.Key,
+                valueSelector => valueSelector.Select(x => x.ProductUniqueIdentifier).ToList());
+
+        return productGrouping;
     }
 }

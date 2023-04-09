@@ -6,6 +6,7 @@ using Recommerce.Services.Orders.Dto;
 namespace Recommerce.ViewModels.Orders;
 
 public record CreateOrderInVm(
+    string OrderUniqueIdentifier,
     string CustomerUniqueIdentifier,
     IEnumerable<CreateOrderItemInVm> OrderItems,
     int? CustomerSessionId,
@@ -22,6 +23,11 @@ public class CreateOrderInVmValidator : AbstractValidator<CreateOrderInVm>
         
         RuleFor(o => o.CustomerSessionId)
             .GreaterThanOrEqualTo(1);
+                
+        RuleFor(o => o.OrderUniqueIdentifier)
+            .NotEmpty()
+            .MaximumLength(50)
+            .NotNull();
         
         RuleFor(o => o.CustomerUniqueIdentifier)
             .NotEmpty()

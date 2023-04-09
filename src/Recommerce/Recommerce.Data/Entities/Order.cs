@@ -6,6 +6,7 @@ namespace Recommerce.Data.Entities;
 public class Order : IEntityMarker
 {
     public int Id { get; set; }
+    public string OrderUniqueIdentifier { get; set; }
     public int CustomerId { get; set; }
     public int Count { get; set; }
     public int UniquePrice { get; set; }
