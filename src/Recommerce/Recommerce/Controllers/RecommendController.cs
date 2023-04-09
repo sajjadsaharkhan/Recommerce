@@ -20,7 +20,7 @@ public class RecommendController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> Get(RecommendationInVm recommendationInVm, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get([FromQuery]RecommendationInVm recommendationInVm, CancellationToken cancellationToken)
     {
         var validator = new RecommendationInVmValidator();
         var validationResult = await validator.ValidateAsync(recommendationInVm, cancellationToken);
