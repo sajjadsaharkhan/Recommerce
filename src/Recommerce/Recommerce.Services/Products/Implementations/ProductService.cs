@@ -1,0 +1,93 @@
+using JetBrains.Annotations;
+using Mapster;
+using Microsoft.EntityFrameworkCore;
+using Recommerce.Data.DbContexts;
+using Recommerce.Data.Entities;
+using Recommerce.Infrastructure.Exceptions;
+using Recommerce.Infrastructure.Pagination;
+using Recommerce.Infrastructure.Pagination.Dto;
+using Recommerce.Infrastructure.Rop;
+using Recommerce.Services.Products.Dto;
+
+namespace Recommerce.Services.Products.Implementations;
+
+[UsedImplicitly]
+public class ProductService : IProductService
+{
+    private readonly AppDbContext _dbContext;
+
+    public ProductService(AppDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
+    public async Task<Result<int>> CreateAsync(CreateProductInDto productInDto, CancellationToken cancellationToken)
+    {
+        var product = productInDto.Adapt<Product>();
+
+        await _dbContext.Products.AddAsync(product, cancellationToken);
+        await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return product.Id;
+    }
+
+    public async Task<Result> UpdateAsync(string uniqueIdentifier, UpdateProductInDto productInDto,
+        CancellationToken cancellationToken)
+    {
+        var product = await _dbContext.Products
+            .Where(p => p.UniqueIdentifier == uniqueIdentifier)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (product is null or default(Product))
+            return new EntityNotFoundException<Product>(uniqueIdentifier);
+
+        product.Name = productInDto.Name;
+        product.BrandId = productInDto.BrandId;
+        product.Size = productInDto.Size;
+        product.Color = productInDto.Color;
+        product.WeightInKg = productInDto.WeightInKg;
+        product.ReviewRate = productInDto.ReviewRate;
+        product.Price = productInDto.Price;
+
+        await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return Result.Success();
+    }
+
+    public async Task<Result> DeleteAsync(string uniqueIdentifier, CancellationToken cancellationToken)
+    {
+        var product = await _dbContext.Products
+            .Where(p => p.UniqueIdentifier == uniqueIdentifier)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (product is null or default(Product))
+            return new EntityNotFoundException<Product>(uniqueIdentifier);
+
+        product.IsDeleted = true;
+        await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return Result.Success();
+    }
+
+    public async Task<Result<ProductOutDto>> GetByIdAsync(string uniqueIdentifier, CancellationToken cancellationToken)
+    {
+        var productOutDto = await _dbContext.Products
+            .Where(p => p.UniqueIdentifier == uniqueIdentifier)
+            .Select(p => p.Adapt<ProductOutDto>())
+            .FirstOrDefaultAsync(cancellationToken);
+
+        return productOutDto is null or default(ProductOutDto)
+            ? new EntityNotFoundException<Product>(uniqueIdentifier)
+            : productOutDto;
+    }
+
+    public async Task<Result<PaginationResponseDto<ProductOutDto>>> GetListAsync(
+        PaginationRequestDto paginationRequestDto, CancellationToken cancellationToken)
+    {
+        var paginatedProductList = await _dbContext.Products
+            .Select(p => p.Adapt<ProductOutDto>())
+            .ToPaginationAsync(paginationRequestDto, cancellationToken);
+
+        return paginatedProductList;
+    }
+}

@@ -6,7 +6,7 @@ namespace Recommerce.Data.Entities;
 public class Product : IEntityMarker
 {
     public int Id { get; set; }
-    public Guid UniqueIdentifier { get; set; }
+    public string UniqueIdentifier { get; set; }
     public string Name { get; set; }
     public int? BrandId { get; set; }
     public string Size { get; set; }
@@ -22,6 +22,7 @@ public class Product : IEntityMarker
     public virtual ICollection<CustomerWishList> CustomerWishLists { get; set; }
     public virtual ICollection<ProductCategoryMapping> ProductCategoryMappings { get; set; }
     public virtual ICollection<ProductReviewMapping> ProductReviewMappings { get; set; }
+    public virtual ICollection<Order> Orders { get; set; }
 }
 
 public class ProductConfiguration : IEntityTypeConfiguration<Product>
@@ -49,9 +50,12 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasColumnType("int");
 
         entity.Property(x => x.Size)
-            .HasColumnType("nvarchar(500)");
-
+            .HasColumnType("nvarchar(100)");
+        
         entity.Property(x => x.Color)
+            .HasColumnType("nvarchar(100)");
+
+        entity.Property(x => x.Name)
             .HasColumnType("nvarchar(500)");
 
         entity.Property(x => x.CreationDate)

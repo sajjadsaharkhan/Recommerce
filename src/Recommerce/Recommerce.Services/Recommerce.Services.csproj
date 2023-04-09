@@ -11,4 +11,8 @@
       <ProjectReference Include="..\Recommerce.Data\Recommerce.Data.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Orders\" />
+    </ItemGroup>
+
 </Project>

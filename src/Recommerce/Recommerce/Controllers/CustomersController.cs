@@ -2,6 +2,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Mapster;
 using Microsoft.AspNetCore.Mvc;
+using Recommerce.Data.Entities;
+using Recommerce.Infrastructure.Exceptions;
 using Recommerce.Infrastructure.Pagination.Dto;
 using Recommerce.Services.Customers;
 using Recommerce.Services.Customers.Dto;
@@ -49,7 +51,7 @@ public class CustomersController : ControllerBase
     {
         var customerResult = await _customerService.GetByIdAsync(uniqueIdentifier, cancellationToken);
 
-        if (customerResult.IsFailed)
+        if (customerResult.Exception is EntityNotFoundException<Customer>)
         {
             return NotFound();
         }
@@ -93,7 +95,7 @@ public class CustomersController : ControllerBase
 
         var customerResult =
             await _customerService.UpdateAsync(uniqueIdentifier, customerUpdateInDto, cancellationToken);
-        if (customerResult.IsFailed)
+        if (customerResult.Exception is EntityNotFoundException<Customer>)
         {
             return NotFound();
         }
