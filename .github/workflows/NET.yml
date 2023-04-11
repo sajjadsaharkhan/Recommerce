@@ -24,19 +24,22 @@ jobs:
             registry: ${{ env.REGISTRY }}
             username: ${{ github.actor }}
             password: ${{ secrets.GITHUB_TOKEN }}
-
+        - name: Docker Build and Push to DockerHub
+          run: |
+            docker build -t sajjadsaharkhan/recommece:latest src/Recommerce/Recommerce/Dockerfile
+            docker push sajjadsaharkhan/recommece:latest
         - name: Extract Docker Meta
           id: meta
           uses: docker/metadata-action@v4
           with:
             images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             tags: ${{ github.run_id }}
-        - name: Build and Push Docker Image
-          uses: docker/build-push-action@v3
-          timeout-minutes: 10
-          with:
-            file: src/Recommerce/Recommerce/Dockerfile
-            context: .
-            push: true
-            tags: ${{ steps.meta.outputs.tags }}
-            labels: ${{ steps.meta.outputs.labels }}
+#        - name: Build and Push Docker Image
+#          uses: docker/build-push-action@v3
+#          timeout-minutes: 10
+#          with:
+#            file: src/Recommerce/Recommerce/Dockerfile
+#            context: .
+#            push: true
+#            tags: ${{ steps.meta.outputs.tags }}
+#            labels: ${{ steps.meta.outputs.labels }}
