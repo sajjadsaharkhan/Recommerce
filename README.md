@@ -2,6 +2,7 @@
   <img src="https://raw.githubusercontent.com/sajjadsaharkhan/Recommerce/main/assets/recommerce-logo.png" alt="recommerce logo" />
     <div align="center">
                 <a href="https://github.com/sajjadsaharkhan/Recommerce/blob/main/README.md"><img alt="build-status" src="https://img.shields.io/github/license/meysamhadeli/booking-modular-monolith?color=%234275f5&style=flat-square"/></a>
+      <a href="https://github.com/sajjadsaharkhan/Recommerce/actions/workflows/NET.yml"><img alt="build-status" src="https://github.com/sajjadsaharkhan/Recommerce/actions/workflows/NET.yml/badge.svg?branch=main&style=flat-square"/></a>
     </div>   
 </div>
 
