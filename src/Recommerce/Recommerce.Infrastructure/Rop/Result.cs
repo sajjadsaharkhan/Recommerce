@@ -9,9 +9,9 @@ public class Result
     public bool IsSuccess { get; }
     public bool IsFailed => !IsSuccess;
     public IEnumerable<string> Messages { get; }
-    public Exception Exception { get; set; }
+    public BaseException Exception { get; set; }
 
-    public Result(bool isSuccess, Exception exception, params string[] messages)
+    public Result(bool isSuccess, BaseException exception, params string[] messages)
     {
         IsSuccess = isSuccess;
         Exception = exception;
@@ -33,12 +33,12 @@ public class Result
         return new Result(false, null!, messages);
     }
 
-    public static Result Failed(Exception exception)
+    public static Result Failed(BaseException exception)
     {
         return new Result(false, exception);
     }
 
-    public static Result Failed(Exception exception, params string[] messages)
+    public static Result Failed(BaseException exception, params string[] messages)
     {
         return new Result(false,  null!, messages);
     }
@@ -53,7 +53,7 @@ public class Result<TSuccess> : Result
 {
     public TSuccess Data { get; }
 
-    private Result(bool isSuccess, TSuccess value, Exception exception, params string[] messages)
+    private Result(bool isSuccess, TSuccess value, BaseException exception, params string[] messages)
         : base(isSuccess, exception, messages)
     {
         Data = value;
@@ -74,12 +74,12 @@ public class Result<TSuccess> : Result
         return new Result<TSuccess>(false, default!, null!, messages);
     }
 
-    public new static Result<TSuccess> Failed(Exception exception)
+    public new static Result<TSuccess> Failed(BaseException exception)
     {
         return new Result<TSuccess>(false, default!, exception);
     }
 
-    public new static Result<TSuccess> Failed(Exception exception, params string[] messages)
+    public new static Result<TSuccess> Failed(BaseException exception, params string[] messages)
     {
         return new Result<TSuccess>(false, default!, null!, messages);
     }

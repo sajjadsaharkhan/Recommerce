@@ -61,7 +61,7 @@ public static class Apriori
             }
 
             // Prune the candidate ItemSets that don't meet the minimum support
-            itemSets = newSets.Where(s => candidateCounts[s] >= minSupport * transactions.Count).ToList();
+            itemSets = newSets.Where(s => candidateCounts.GetValueOrDefault(s) >= minSupport * transactions.Count).ToList();
 
             // Add the frequent ItemSets to the result list
             frequentItemSets.AddRange(itemSets);

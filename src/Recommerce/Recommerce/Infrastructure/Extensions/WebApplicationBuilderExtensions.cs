@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using FluentAssociation;
 using Mapster;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +30,7 @@ internal static class WebApplicationBuilderExtensions
         builder.Services.AddAdvancedDependencyInjection();
 
         builder.Services.AddAndConfigureControllers();
-        
+
         builder.Services.ConfigureCors();
 
         // config Mapster

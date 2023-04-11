@@ -1,7 +1,6 @@
+using FluentAssociation;
 using JetBrains.Annotations;
 using Recommerce.Infrastructure.Rop;
-using Recommerce.Services.Algorithms.AssociationRules;
-using Recommerce.Services.Algorithms.AssociationRules.Dto;
 using Recommerce.Services.Customers;
 using Recommerce.Services.Orders;
 using Recommerce.Services.Recommend.Dto;
@@ -12,7 +11,6 @@ namespace Recommerce.Services.Recommend.Implementations;
 public class RecommenderService : IRecommenderService
 {
     // minimum number of transactions an ItemSetDto must appear in to be considered frequent
-    private const int MinFrequentMeaning = 2;
     private readonly IOrderService _orderService;
     private readonly ICustomerService _customerService;
 
@@ -31,21 +29,22 @@ public class RecommenderService : IRecommenderService
             recommendationInDto.PreventRepetitiveProducts, cancellationToken);
 
         var transactions = ordersData.Data
-            .Select(order => new TransactionDto(order.Value))
+            .Select(order => order.Value)
             .ToList();
 
-        // Run Apriori algorithm to find frequent ItemSetDto and association rules
-        var frequentItemSets = Apriori.GenerateFrequentItemSets(transactions, MinFrequentMeaning);
-        var associationRules =
-            Apriori.GenerateAssociationRules(frequentItemSets, recommendationInDto.AccuracyPercentage);
+        var fluentAssociation = new FluentAssociation<string>();
+        fluentAssociation.LoadDataWarehouse(transactions);
 
-        // Find recommended products based on association rules
-        var recommendedProductIdList = associationRules
-            .OrderByDescending(ar => ar.Confidence)
-            .Select(ar => ar.Consequent.Items.FirstOrDefault())
+        var minSupport = recommendationInDto.AccuracyPercentage / 100f;
+
+        var metrics = await fluentAssociation.GetReportItemSets();
+        var bestSupports = metrics
+            .Where(x => x.Suport > minSupport)
+            .ToList();
+
+        return bestSupports
+            .SelectMany(x => x.Items)
             .Take(recommendationInDto.ProductCount)
             .ToList();
-
-        return recommendedProductIdList;
     }
 }
