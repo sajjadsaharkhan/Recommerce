@@ -30,13 +30,12 @@ jobs:
           uses: docker/metadata-action@v4
           with:
             images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-            tags: ${{ github.run_id }} #add prefix for staging environment
-
+            tags: ${{ github.run_id }}
         - name: Build and Push Docker Image
           uses: docker/build-push-action@v3
           timeout-minutes: 10
           with:
-            file: src/Recommerce/Dockerfile
+            file: src/Recommerce/Recommerce/Dockerfile
             context: .
             push: true
             tags: ${{ steps.meta.outputs.tags }}
