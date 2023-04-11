@@ -7,7 +7,6 @@ on:
 env:
    REGISTRY: ghcr.io
    IMAGE_NAME: sajjadsaharkhan/recommerce
-   ACTIONS_RUNNER_DEBUG: true
 
 jobs:
     build-docker:
