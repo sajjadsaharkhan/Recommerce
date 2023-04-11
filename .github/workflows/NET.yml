@@ -38,5 +38,6 @@ jobs:
             file: src/Recommerce/Recommerce/Dockerfile
             context: .
             push: true
+            cache-to: type=inline
             tags: ${{ steps.meta.outputs.tags }}
             labels: ${{ steps.meta.outputs.labels }}
