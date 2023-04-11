@@ -34,8 +34,6 @@ public static class WebApplicationExtensions
 
         app.UseExceptionAndStatusCodeHandler();
         app.MapSlash();
-        if(!app.Environment.IsDevelopment())
-            app.UseSentryTracing();
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
