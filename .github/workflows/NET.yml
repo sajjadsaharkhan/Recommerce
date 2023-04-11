@@ -27,7 +27,8 @@ jobs:
         - name: Docker Build and Push to DockerHub
           run: |
             cd src/Recommerce
-            docker login ghcr.io -u ${{ github.actor }} --password-stdin ${{ secrets.GITHUB_TOKEN }}
+            export CR_PAT=${{ secrets.GITHUB_TOKEN }}
+            echo $CR_PAT | docker login ghcr.io -u ${{ github.actor }} --password-stdin
             docker build -t sajjadsaharkhan/recommece:latest -f ./Recommerce/Dockerfile .
             docker push sajjadsaharkhan/recommece:latest
         - name: Extract Docker Meta
