@@ -72,7 +72,8 @@ public class CustomerService : ICustomerService
         CancellationToken cancellationToken)
     {
         var customer = customerCreateInDto.Adapt<Customer>();
-
+        customer.LastLoginDate = null;
+        
         await _dbContext.Customers.AddAsync(customer, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
 

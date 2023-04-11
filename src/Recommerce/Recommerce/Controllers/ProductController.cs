@@ -78,7 +78,8 @@ public class ProductController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList(PaginationInVm paginationInVm, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetList([FromQuery] PaginationInVm paginationInVm,
+        CancellationToken cancellationToken)
     {
         var paginationInDto = paginationInVm.Adapt<PaginationRequestDto>();
         var paginatedProductListResult = await _productService.GetListAsync(paginationInDto, cancellationToken);

@@ -4,11 +4,11 @@ using Recommerce.Data.Enums;
 namespace Recommerce.ViewModels.Customers;
 
 public record CustomerOutVm(
-    Guid UniqueIdentifier,
+    string UniqueIdentifier,
     DateTime BirthDate,
-    GenderType GenderType,
+    string GenderType,
     int ShoppingBalance,
-    DateTime RegisterDate,
-    DateTime LastLoginDate
+    DateTime? RegisterDate,
+    DateTime? LastLoginDate
 );
 

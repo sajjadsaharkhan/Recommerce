@@ -7,7 +7,7 @@ namespace Recommerce.ViewModels.Customers;
 
 public record CustomerCreateInVm(
     string UniqueIdentifier,
-    DateTime BirthDate,
+    DateTime? BirthDate,
     GenderType GenderType,
     int ShoppingBalance
 );

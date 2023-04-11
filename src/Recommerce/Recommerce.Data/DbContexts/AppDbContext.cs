@@ -28,11 +28,10 @@ public class AppDbContext : DbContext
 
         var entitiesAssembly = typeof(IEntityMarker).Assembly;
 
-        modelBuilder.RegisterAllEntities<IEntityMarker>(entitiesAssembly);
+        // modelBuilder.RegisterAllEntities<IEntityMarker>(entitiesAssembly);
         modelBuilder.RegisterEntityTypeConfiguration(entitiesAssembly);
         modelBuilder.AddPluralizingTableNameConvention();
-        modelBuilder.AddRestrictDeleteBehaviorConvention();
+        // modelBuilder.AddRestrictDeleteBehaviorConvention();
         modelBuilder.AddQueryFilters();
-        modelBuilder.ApplyIdentityConfiguration();
     }
 }

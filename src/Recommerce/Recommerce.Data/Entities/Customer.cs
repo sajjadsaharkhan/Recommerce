@@ -11,8 +11,7 @@ public class Customer : IEntityMarker
     public DateTime? BirthDate { get; set; }
     public GenderType? GenderType { get; set; }
     public int? ShoppingBalance { get; set; }
-    public DateTime RegisterDate { get; set; }
-    public DateTime LastLoginDate { get; set; }
+    public DateTime? LastLoginDate { get; set; }
     public DateTime CreationDate { get; set; }
     public bool IsDeleted { get; set; }
     
@@ -41,22 +40,19 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
             .HasDefaultValueSql("GetDate()")
             .HasColumnType("DateTime");
 
-        entity.Property(x => x.RegisterDate)
-            .IsRequired()
-            .HasColumnType("DateTime");
-
         entity.Property(x => x.LastLoginDate)
-            .IsRequired()
+            .IsRequired(false)
             .HasColumnType("DateTime");
         
         entity.Property(x => x.BirthDate)
             .HasColumnType("DateTime");
 
         entity.Property(x => x.ShoppingBalance)
-            .IsRequired()
+            .IsRequired(false)
             .HasColumnType("int");
         
         entity.Property(x => x.GenderType)
+            .IsRequired(false)
             .HasColumnType("TinyInt");
     }
 }
