@@ -26,7 +26,8 @@ jobs:
             password: ${{ secrets.GITHUB_TOKEN }}
         - name: Docker Build and Push to DockerHub
           run: |
-            docker build -t sajjadsaharkhan/recommece:latest src/Recommerce/Recommerce/Dockerfile
+            ls
+            docker build -t sajjadsaharkhan/recommece:latest .
             docker push sajjadsaharkhan/recommece:latest
         - name: Extract Docker Meta
           id: meta
