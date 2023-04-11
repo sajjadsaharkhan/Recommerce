@@ -12,7 +12,7 @@ jobs:
     build-docker:
       runs-on: ubuntu-latest
       name: Build Docker Image
-      if: ${{ github.ref == 'refs/heads/main' && contains(github.event.head_commit.message,'#nuget')==true }}
+      if: ${{ github.ref == 'refs/heads/main' && contains(github.event.head_commit.message,'#docker')==true }}
       permissions:
         contents: read
         packages: write
@@ -36,7 +36,7 @@ jobs:
           uses: docker/build-push-action@v3
           timeout-minutes: 10
           with:
-            file: Project.Api/Dockerfile
+            file: Recommerce/Dockerfile
             context: .
             push: true
             tags: ${{ steps.meta.outputs.tags }}
