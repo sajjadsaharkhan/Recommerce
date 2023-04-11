@@ -20,6 +20,7 @@ public class Customer : IEntityMarker
     public virtual ICollection<CustomerWishList> CustomerWishLists { get; set; }
     public virtual ICollection<Order> Orders { get; set; }
     public virtual ICollection<ProductReviewMapping> ProductReviewMappings { get; set; }
+    public virtual ICollection<Basket> Baskets { get; set; }
 }
 
 public class CustomerConfiguration : IEntityTypeConfiguration<Customer>

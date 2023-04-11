@@ -16,6 +16,7 @@ public class AppDbContext : DbContext
     public virtual DbSet<CustomerSession> CustomerSessions { get; set; }
     public virtual DbSet<CustomerWishList> CustomerWishList { get; set; }
     public virtual DbSet<Order> Orders { get; set; }
+    public virtual DbSet<Basket> Baskets { get; set; }
     public virtual DbSet<Product> Products { get; set; }
     public virtual DbSet<ProductReviewMapping> ProductReviewMappings { get; set; } 
     public virtual DbSet<CustomerSessionProductMapping> CustomerSessionProductMappings { get; set; } 

@@ -23,6 +23,7 @@ public class Product : IEntityMarker
     public virtual ICollection<ProductCategoryMapping> ProductCategoryMappings { get; set; }
     public virtual ICollection<ProductReviewMapping> ProductReviewMappings { get; set; }
     public virtual ICollection<Order> Orders { get; set; }
+    public virtual ICollection<Basket> Baskets { get; set; }
 }
 
 public class ProductConfiguration : IEntityTypeConfiguration<Product>
