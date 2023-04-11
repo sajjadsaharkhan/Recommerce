@@ -36,7 +36,7 @@ jobs:
           uses: docker/build-push-action@v3
           timeout-minutes: 10
           with:
-            file: Recommerce/Dockerfile
+            file: src/Recommerce/Dockerfile
             context: .
             push: true
             tags: ${{ steps.meta.outputs.tags }}
