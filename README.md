@@ -27,6 +27,7 @@ If you are looking for a recommender system that can be installed independently 
 - [Artificial Intelligence Techniques](#artificial-intelligence-techniques)
 - [Support](#support)
 - [Contribution](#contribution)
+- [Architecture Decision Records](#architecture-decision-records)
 - [License](#license)
 ## How it Works
 The recommender system offers the best products expected by the user by analyzing the following factors:
@@ -199,6 +200,12 @@ If you are not able to contribute code or documentation, you can still contribut
 
 We appreciate all contributions to the project, big or small. Thank you for helping us make Logic a better product recommender system! 
 **Thank you for your contributions! ❤️**
+
+## Architecture Decision Records
+
+Architecture decisions are documented in the [adr](adr/) directory.
+
+- [0001-database-and-messaging](adr/0001-database-and-messaging.md)
 
 ## License
 This project is made available under the MIT license. See [LICENSE](https://github.com/sajjadsaharkhan/Recommerce/blob/main/LICENSE) for details.
