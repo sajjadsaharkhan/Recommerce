@@ -14,6 +14,7 @@
     <ItemGroup>
       <PackageReference Include="Accord.MachineLearning" Version="3.8.0" />
       <PackageReference Include="FluentAssociation" Version="1.2.0" />
+      <PackageReference Include="Microsoft.ML" Version="2.0.0" />
     </ItemGroup>
 
 </Project>
