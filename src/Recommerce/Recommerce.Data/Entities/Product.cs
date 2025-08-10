@@ -11,6 +11,7 @@ public class Product : IEntityMarker
     public int? BrandId { get; set; }
     public string Size { get; set; }
     public string Color { get; set; }
+    public string? Embedding { get; set; }
     public int? WeightInKg { get; set; }
     public float? ReviewRate { get; set; }
     public int? CommentCount { get; set; }
@@ -55,6 +56,9 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         
         entity.Property(x => x.Color)
             .HasColumnType("nvarchar(100)");
+
+        entity.Property(x => x.Embedding)
+            .HasColumnType("nvarchar(max)");
 
         entity.Property(x => x.Name)
             .HasColumnType("nvarchar(500)");

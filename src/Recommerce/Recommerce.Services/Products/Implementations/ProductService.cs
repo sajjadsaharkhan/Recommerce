@@ -45,6 +45,7 @@ public class ProductService : IProductService
         product.BrandId = productInDto.BrandId;
         product.Size = productInDto.Size;
         product.Color = productInDto.Color;
+        product.Embedding = productInDto.Embedding;
         product.WeightInKg = productInDto.WeightInKg;
         product.ReviewRate = productInDto.ReviewRate;
         product.Price = productInDto.Price;

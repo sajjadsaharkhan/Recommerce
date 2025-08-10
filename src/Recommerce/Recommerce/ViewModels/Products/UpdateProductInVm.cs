@@ -8,6 +8,7 @@ public record UpdateProductInVm(
     int? BrandId,
     string Size,
     string Color,
+    string? Embedding,
     int? WeightInKg,
     float? ReviewRate,
     int Price
