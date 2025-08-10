@@ -6,6 +6,7 @@ public record ProductOutDto(
     int? BrandId,
     string Size,
     string Color,
+    string? Embedding,
     int? WeightInKg,
     float? ReviewRate,
     int? CommentCount,

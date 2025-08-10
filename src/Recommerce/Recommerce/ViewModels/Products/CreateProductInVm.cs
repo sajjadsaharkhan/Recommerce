@@ -9,6 +9,7 @@ public record CreateProductInVm(
     int? BrandId,
     string Size,
     string Color,
+    string? Embedding,
     int? WeightInKg,
     float? ReviewRate,
     int Price
