@@ -113,7 +113,7 @@ public static class StringExtensions
     }
 
     /// <summary>
-    /// return true if entered string has any value (expect space characters only!)
+    /// return true if entered string has any value (except space characters only!)
     /// </summary>
     /// <param name="input"></param>
     /// <returns></returns>
