@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using Recommerce.Services.Recommend;
+using Recommerce.Services.Recommend.Implementations;
 
 namespace Recommerce.Infrastructure.Extensions;
 
@@ -26,8 +28,9 @@ internal static class WebApplicationBuilderExtensions
         builder.Services.AddHttpContextAccessor();
 
         builder.Services.AddAndConfigureSwaggerServices();
-        
+
         builder.Services.AddAdvancedDependencyInjection();
+        builder.Services.AddScoped<IRecommenderService, NeuralRecommenderService>();
 
         builder.Services.AddAndConfigureControllers();
 
