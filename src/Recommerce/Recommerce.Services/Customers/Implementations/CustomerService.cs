@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using Mapster;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Recommerce.Data.DbContexts;
 using Recommerce.Data.Entities;
@@ -8,17 +9,20 @@ using Recommerce.Infrastructure.Pagination;
 using Recommerce.Infrastructure.Pagination.Dto;
 using Recommerce.Infrastructure.Rop;
 using Recommerce.Services.Customers.Dto;
+using Recommerce.Services.Events;
 
 namespace Recommerce.Services.Customers.Implementations;
 
 [UsedImplicitly]
 public class CustomerService : ICustomerService
-{
+{ 
     private readonly AppDbContext _dbContext;
+    private readonly IPublishEndpoint _publishEndpoint;
 
-    public CustomerService(AppDbContext dbContext)
+    public CustomerService(AppDbContext dbContext, IPublishEndpoint publishEndpoint)
     {
         _dbContext = dbContext;
+        _publishEndpoint = publishEndpoint;
     }
 
     public async Task<Result<CustomerOutDto>> GetByIdAsync(string uniqueIdentifier, CancellationToken cancellationToken)
@@ -76,6 +80,8 @@ public class CustomerService : ICustomerService
         
         await _dbContext.Customers.AddAsync(customer, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
+
+        await _publishEndpoint.Publish(new UserCreated(customer.Id, customer.UniqueIdentifier), cancellationToken);
 
         return customer.Id;
     }

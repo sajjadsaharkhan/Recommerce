@@ -1,9 +1,11 @@
 using JetBrains.Annotations;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Recommerce.Data.DbContexts;
 using Recommerce.Data.Entities;
 using Recommerce.Infrastructure.Rop;
 using Recommerce.Services.Customers;
+using Recommerce.Services.Events;
 using Recommerce.Services.Orders.Dto;
 using Recommerce.Services.Products;
 
@@ -15,12 +17,14 @@ public class OrderService : IOrderService
     private readonly AppDbContext _dbContext;
     private readonly ICustomerService _customerService;
     private readonly IProductService _productService;
+    private readonly IPublishEndpoint _publishEndpoint;
 
-    public OrderService(AppDbContext dbContext, ICustomerService customerService, IProductService productService)
+    public OrderService(AppDbContext dbContext, ICustomerService customerService, IProductService productService, IPublishEndpoint publishEndpoint)
     {
         _dbContext = dbContext;
         _customerService = customerService;
         _productService = productService;
+        _publishEndpoint = publishEndpoint;
     }
 
 
@@ -53,6 +57,8 @@ public class OrderService : IOrderService
 
         await _dbContext.Orders.AddRangeAsync(orderEntityList, cancellationToken);
         await _dbContext.SaveChangesAsync(cancellationToken);
+
+        await _publishEndpoint.Publish(new OrderPlaced(createOrderInDto.OrderUniqueIdentifier, customerIdResult.Data), cancellationToken);
 
         return Result.Success();
     }

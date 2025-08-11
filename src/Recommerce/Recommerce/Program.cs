@@ -1,4 +1,5 @@
 using System;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -6,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Recommerce.Data.DbContexts;
 using Recommerce.Infrastructure.Extensions;
+using Recommerce.Services.Consumers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,28 +26,24 @@ builder.Services.AddDbContextPool<AppDbContext>(options =>
     });
 });
 
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumers(typeof(UserCreatedConsumer).Assembly);
 
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host("rabbitmq", "/", h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
+
+        cfg.ConfigureEndpoints(context);
+    });
+});
 
 var app = builder.Build();
 
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseGeneralServices();
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
 
 app.Run();
