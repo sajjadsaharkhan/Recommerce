@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using Mapster;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Recommerce.Data.DbContexts;
 using Recommerce.Data.Entities;
@@ -7,6 +8,7 @@ using Recommerce.Infrastructure.Exceptions;
 using Recommerce.Infrastructure.Pagination;
 using Recommerce.Infrastructure.Pagination.Dto;
 using Recommerce.Infrastructure.Rop;
+using Recommerce.Services.Events;
 using Recommerce.Services.Products.Dto;
 
 namespace Recommerce.Services.Products.Implementations;
@@ -15,10 +17,12 @@ namespace Recommerce.Services.Products.Implementations;
 public class ProductService : IProductService
 {
     private readonly AppDbContext _dbContext;
+    private readonly IPublishEndpoint _publishEndpoint;
 
-    public ProductService(AppDbContext dbContext)
+    public ProductService(AppDbContext dbContext, IPublishEndpoint publishEndpoint)
     {
         _dbContext = dbContext;
+        _publishEndpoint = publishEndpoint;
     }
 
     public async Task<Result<int>> CreateAsync(CreateProductInDto productInDto, CancellationToken cancellationToken)
@@ -51,6 +55,9 @@ public class ProductService : IProductService
         product.Price = productInDto.Price;
 
         await _dbContext.SaveChangesAsync(cancellationToken);
+
+        if (productInDto.ReviewRate.HasValue)
+            await _publishEndpoint.Publish(new ProductRated(uniqueIdentifier, productInDto.ReviewRate), cancellationToken);
 
         return Result.Success();
     }
