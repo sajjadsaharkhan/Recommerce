@@ -108,7 +108,7 @@ public class ProductService : IProductService
             .ToDictionaryAsync(keySelector => keySelector.UniqueIdentifier, valueSelector => valueSelector.Id,
                 cancellationToken);
 
-        if (productsIdDictionary.Count == productIdentifierList.Count())
+        if (productsIdDictionary.Count != productIdentifierList.Count())
             return new EntityNotFoundException<Product>();
 
         return productsIdDictionary;
