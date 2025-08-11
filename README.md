@@ -135,10 +135,10 @@ High-level plan is represented in the table
 
 ## The Domain And Bounded Context
 
-- `Presentation`: The Booking Service is a bounded context for managing all operation related to booking ticket.
- - `Services`: The Services project is a bounded context of system business logics
-- `Data`: The Data project is a bounded context for the domain and entities of project and all of Database needs.
-- `Infrastructure`: The Infrastructure project is a bounded context of some extension or shared resource for the all of the projects
+- `Presentation`: The Presentation service handles API endpoints for the recommender system.
+- `Services`: The Services project contains the system's business logic.
+- `Data`: The Data project defines domain entities and manages database interactions.
+- `Infrastructure`: The Infrastructure project provides shared extensions and resources for all modules.
 
 ## Artificial Intelligence Techniques
 
