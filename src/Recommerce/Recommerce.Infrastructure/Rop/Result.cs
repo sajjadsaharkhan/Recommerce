@@ -40,7 +40,7 @@ public class Result
 
     public static Result Failed(BaseException exception, params string[] messages)
     {
-        return new Result(false,  null!, messages);
+        return new Result(false, exception, messages);
     }
     
     // wrap Custom Exceptions into Result
@@ -81,7 +81,7 @@ public class Result<TSuccess> : Result
 
     public new static Result<TSuccess> Failed(BaseException exception, params string[] messages)
     {
-        return new Result<TSuccess>(false, default!, null!, messages);
+        return new Result<TSuccess>(false, default!, exception, messages);
     }
 
     
